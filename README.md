@@ -3,7 +3,7 @@ In order to speed up the development of more robust systems, the 'Quiron.EntityF
 
 For this reason, a practical example of how to use the package in a very detailed way was created, from simple to more complex examples.
 
-# Actions begin
+# Actions begining
 - [x] Create a new DB in your SQL Server instance with the name 'Quiron.EntityFrameworkCore.Test' and change the connection string in the appsettings.json file to point to your DB.
 - [x] Execute migrations to create the database structure. The migrations are already created in the project, so you don't need to worry about creating them. Just execute the command below to create the database structure.
 
