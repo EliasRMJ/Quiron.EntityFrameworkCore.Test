@@ -1,5 +1,5 @@
 # Quiron.EntityFrameworkCore.Test
-In order to speed up the development of more robust systems, the 'Quiron.EntityFrameworkCore' package was created. With all the resources provided by it, you will focus on the development of your business in the application, without losing on the creation of persistence methods and filters.
+In order to speed up the development of more robust systems, the 'Quiron.EntityFrameworkCore' package was created. With all the features provided by it, you will focus on developing your business in the application, without wasting time on creating persistence methods and filters.
 
 For this reason, a practical example of how to use the package in a very detailed way was created, from simple to more complex examples.
 
@@ -10,6 +10,24 @@ For this reason, a practical example of how to use the package in a very detaile
 # Commands for begin the tests
 - [x] dotnet ef migrations add StartMigration --context Quiron.EntityFrameworkCore.Test.Domain.ContextTest --startup-project Quiron.EntityFrameworkCore.Test
 - [x] dotnet ef database update --context Quiron.EntityFrameworkCore.Test.Domain.ContextTest --startup-project Quiron.EntityFrameworkCore.Test
+
+# Namespaces
+- [x] Quiron.EntityFrameworkCore
+- [x] Quiron.EntityFrameworkCore.AppServices
+- [x] Quiron.EntityFrameworkCore.Constants
+- [x] Quiron.EntityFrameworkCore.CrossCutting
+- [x] Quiron.EntityFrameworkCore.Entitys
+- [x] Quiron.EntityFrameworkCore.Enuns
+- [x] Quiron.EntityFrameworkCore.Extensions
+- [x] Quiron.EntityFrameworkCore.Interfaces
+- [x] Quiron.EntityFrameworkCore.Mail
+- [x] Quiron.EntityFrameworkCore.MessagesProvider
+- [x] Quiron.EntityFrameworkCore.MessagesProvider.Locations
+- [x] Quiron.EntityFrameworkCore.Repositorys
+- [x] Quiron.EntityFrameworkCore.Services
+- [x] Quiron.EntityFrameworkCore.Structs
+- [x] Quiron.EntityFrameworkCore.Transactions
+- [x] Quiron.EntityFrameworkCore.Utils
 
 # Features
 - **Unit of Work**: The package implements the Unit of Work pattern, allowing you to manage multiple repositories and transactions in a single context.
