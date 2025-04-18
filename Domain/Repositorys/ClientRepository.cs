@@ -1,12 +1,16 @@
-﻿using Quiron.EntityFrameworkCore.Test.Domain.Entitys;
+﻿using Microsoft.EntityFrameworkCore;
+using Quiron.EntityFrameworkCore.Test.Domain.Entitys;
 using Quiron.EntityFrameworkCore.Repositorys;
-using Microsoft.EntityFrameworkCore;
 using Quiron.EntityFrameworkCore.Interfaces;
+using Quiron.EntityFrameworkCore.Enuns;
+using Quiron.EntityFrameworkCore.Extensions;
+using Quiron.EntityFrameworkCore.Structs;
 
 namespace Quiron.EntityFrameworkCore.Test.Domain.Repositorys
 {
     public class ClientRepository(ContextTest contextTest
                                 , ILogger<PersistenceData<ContextTest, Client>> logger
+                                , ITransactionWork unitwork
                                 , IMessagesProvider provider)
         : PersistenceData<ContextTest, Client>(contextTest, logger, provider), IClientRepository
     {
@@ -14,15 +18,81 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.Repositorys
         {
             await base.EntityHierarchy(element);
 
-            if (element.ElementStates == Enuns.ElementStatesEnum.New) contextTest.Clients.Add(element);
-            else if (element.ElementStates == Enuns.ElementStatesEnum.Update) contextTest.Clients.Update(element);
+            if (element.ElementStates == ElementStatesEnum.New) contextTest.Clients.Add(element);
+            else if (element.ElementStates == ElementStatesEnum.Update) contextTest.Clients.Update(element);
+        }
+
+        public async override Task<OperationReturn> UpdateAsync(Client element)
+        {
+            var _returnUpdate = new OperationReturn { EntityName = "Client", ReturnType = ReturnTypeEnum.Empty, Field = "Id", Key = $"{element.ClientId}" };
+
+            var client = await GetEntityByIdAsync(element.Id);
+            if (client is null)
+            {
+                _returnUpdate.Messages.Add(new() { Text = $"Client '{element.ClientId}' isn't found!", ReturnType = ReturnTypeEnum.Empty });
+                return _returnUpdate;
+            }
+
+            try
+            {
+                await unitwork.BeginTransactionAsync();
+
+                if (client.Person.Emails?.Count > 0 && element.Person.Emails?.Count > 0)
+                {
+                    var atualizarcontextTesto = false;
+                    foreach (var emailRemove in client.Person.Emails)
+                    {
+                        if (!element.Person.Emails.Any(f => f.Mail == emailRemove.Mail))
+                        {
+                            contextTest.EmailPersons.Remove(emailRemove);
+                            atualizarcontextTesto = true;
+                        }
+                    }
+
+                    if (atualizarcontextTesto)
+                        await contextTest.SaveChangesAsync();
+                }
+                else if (client.Person.Emails?.Count > 0 && element.Person.Emails?.Count == 0)
+                {
+                    contextTest.EmailPersons.RemoveRange(client.Person.Emails);
+                    await contextTest.SaveChangesAsync();
+                }
+
+                if (element.Person.Emails?.Count > 0)
+                {
+                    foreach (var email in element.Person.Emails)
+                    {
+                        if (email.Id > 0)
+                            contextTest.EmailPersons.Update(email);
+                    }
+                }
+
+                _returnUpdate = await base.UpdateAsync(element);
+
+                if (_returnUpdate.IsSuccess) await unitwork.CommitAsync();
+                else await unitwork.RollbackAsync();
+            }
+            catch (Exception ex)
+            {
+                await unitwork.RollbackAsync();
+
+                _returnUpdate.ReturnType = ReturnTypeEnum.Error;
+                _returnUpdate.Messages.Add(new()
+                {
+                    Text = $"An unexpected error occurred while updating the provider '{element.Person.Name}'. Error: {ex.AggregateMessage()}",
+                    ReturnType = ReturnTypeEnum.Error,
+                    Code = provider.Current.Error
+                });
+            }
+
+            return _returnUpdate;
         }
 
         public override async Task<Client> GetEntityByIdAsync(long id)
         {
             return await contextTest.Clients
                 .AsNoTrackingWithIdentityResolution()
-                .Include(inc => inc.Person)
+                .Include(inc => inc.Person!)
                 .Include(inc => inc.Classification)
                 .Include(inc => inc.Person.Emails)
                 .FirstOrDefaultAsync(find => find.ClientId == id);

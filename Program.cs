@@ -16,6 +16,7 @@ using Quiron.EntityFrameworkCore.Test.Domain.Transaction;
 using Quiron.EntityFrameworkCore.MessagesProvider.Locations;
 using Quiron.EntityFrameworkCore.MessagesProvider;
 using Quiron.EntityFrameworkCore.Test.Domain.MailSend;
+using Quiron.EntityFrameworkCore.Test.Domain.Locations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +34,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<Messages, MessagesEnUs>();
 builder.Services.AddSingleton<MessagesEnUs>();
 builder.Services.AddSingleton<MessagesPtBr>();
+builder.Services.AddSingleton<MessagesEsEs>();
 
 builder.Services.AddSingleton<IMessagesProvider, MessagesProvider>();
 
