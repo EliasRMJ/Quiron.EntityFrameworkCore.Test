@@ -1,8 +1,9 @@
 ﻿using Quiron.EntityFrameworkCore.MessagesProvider;
+using Quiron.EntityFrameworkCore.Test.Domain.Locations.Interfaces;
 
 namespace Quiron.EntityFrameworkCore.Test.Domain.Locations
 {
-    public class MessagesEsEs: Messages
+    public class MessagesEsEs: Messages, IMyMessages
     {
         public override string Error => "ERROR";
         public override string Warning => "ATENCIÓN";
@@ -50,5 +51,8 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.Locations
         public override string MailOperationCanceledException => "Se produjo una excepción al cancelar la operación.";
         public override string MailCommandException => "El comando puede no ser válido.";
         public override string MailProtocolException => "El protocolo de correo electrónico no es inválido.";
+
+        public string RegisterNotFound => "Registro no encontrado";
+        public string ExceptionUpdate => "Se produjo un error inesperado al actualizar el proveedor";
     }
 }

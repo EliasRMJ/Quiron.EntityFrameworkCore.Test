@@ -1,13 +1,13 @@
-﻿using Quiron.EntityFrameworkCore.MessagesProvider;
-using Quiron.EntityFrameworkCore.MessagesProvider.Locations;
+﻿using Quiron.EntityFrameworkCore.Interfaces;
+using Quiron.EntityFrameworkCore.Test.Domain.Locations.Interfaces;
 
 namespace Quiron.EntityFrameworkCore.Test.Domain.Locations
 {
     public class MyMessagesProvider(IHttpContextAccessor httpContextAccessor
                                   , IServiceProvider serviceProvider) 
-        : MessagesProvider.MessagesProvider(httpContextAccessor, serviceProvider)
+        : MessagesProvider.MessagesProvider(httpContextAccessor, serviceProvider), IMyMessagesProvider
     {
-        public override Messages Current
+        public override IMessages Current
         {
             get
             {
@@ -15,12 +15,14 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.Locations
 
                 return culture switch
                 {
-                    "en-US" => serviceProvider.GetRequiredService<MessagesEnUs>(),
-                    "pt-BR" => serviceProvider.GetRequiredService<MessagesPtBr>(),
+                    "en-US" => serviceProvider.GetRequiredService<MyMessagesEnUs>(),
+                    "pt-BR" => serviceProvider.GetRequiredService<MyMessagesPtBr>(),
                     "es-ES" => serviceProvider.GetRequiredService<MessagesEsEs>(),
-                    _ => serviceProvider.GetRequiredService<Messages>()
+                    _ => serviceProvider.GetRequiredService<MyMessagesEnUs>()
                 };
             }
         }
+
+        public IMyMessages MyCurrent => (IMyMessages)this.Current;
     }
 }

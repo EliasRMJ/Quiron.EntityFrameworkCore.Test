@@ -4,6 +4,7 @@ using Quiron.EntityFrameworkCore.Enuns;
 using Quiron.EntityFrameworkCore.Interfaces;
 using Quiron.EntityFrameworkCore.Structs;
 using Quiron.EntityFrameworkCore.Test.Domain.Entitys;
+using Quiron.EntityFrameworkCore.Test.Domain.Locations.Interfaces;
 using Quiron.EntityFrameworkCore.Test.Domain.Services;
 using Quiron.EntityFrameworkCore.Test.Domain.ViewModels;
 
@@ -13,7 +14,7 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.AppServices
                                         , ITransactionWork transactionWork
                                         , IMapper mapper
                                         , ILogger<ClassificationViewModel> logger
-                                        , IMessagesProvider provider)
+                                        , IMyMessagesProvider provider)
         : AppServiceBase<ClassificationViewModel, Classification>(classificationService, transactionWork, mapper, logger, provider)
         , IClassificationAppService
     {

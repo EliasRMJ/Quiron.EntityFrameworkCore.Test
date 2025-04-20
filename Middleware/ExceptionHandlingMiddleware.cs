@@ -1,4 +1,4 @@
-﻿using Quiron.EntityFrameworkCore.Interfaces;
+﻿using Quiron.EntityFrameworkCore.Test.Domain.Locations.Interfaces;
 using System.Net;
 using System.Text.Json;
 
@@ -6,7 +6,7 @@ namespace Quiron.EntityFrameworkCore.Test.Middleware
 {
     public class ExceptionHandlingMiddleware(RequestDelegate next
                                            , ILogger<ExceptionHandlingMiddleware> logger
-                                           , IMessagesProvider provider)
+                                           , IMyMessagesProvider provider)
     {
         private readonly RequestDelegate _next = next;
         private readonly ILogger<ExceptionHandlingMiddleware> _logger = logger;

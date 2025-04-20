@@ -17,6 +17,8 @@ using Quiron.EntityFrameworkCore.MessagesProvider.Locations;
 using Quiron.EntityFrameworkCore.MessagesProvider;
 using Quiron.EntityFrameworkCore.Test.Domain.MailSend;
 using Quiron.EntityFrameworkCore.Test.Domain.Locations;
+using Quiron.EntityFrameworkCore.Test.Domain.Locations.Interfaces;
+using Quiron.EntityFrameworkCore.Test.Domain.Entitys;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,12 +33,15 @@ builder.Services.AddSingleton(typeof(IDatabaseContext), typeof(ContextTest));
 builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddSingleton<Messages, MessagesEnUs>();
+builder.Services.AddSingleton<Messages, MyMessagesEnUs>();
 builder.Services.AddSingleton<MessagesEnUs>();
 builder.Services.AddSingleton<MessagesPtBr>();
 builder.Services.AddSingleton<MessagesEsEs>();
+builder.Services.AddSingleton<MyMessagesEnUs>();
+builder.Services.AddSingleton<MyMessagesPtBr>();
 
 builder.Services.AddSingleton<IMessagesProvider, MessagesProvider>();
+builder.Services.AddSingleton<IMyMessagesProvider, MyMessagesProvider>();
 
 builder.Services.AddScoped(typeof(ITransactionWork), typeof(TransactionWork));
 
@@ -58,14 +63,14 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new()
     {
-        Version = "v1",        
+        Version = "v1",
         Title = "Quiron.EntityFrameworkCore.Test",
         Description = "APIs - Component responsible for managing data persistence.",
-        Contact = new() 
-        { 
-            Name = "Quiron.EntityFrameworkCore.Test", 
-            Email = "text@quiron.entityframeworkcore.test.com", 
-            Url = new Uri("https://quiron.entityframeworkcore.test.com") 
+        Contact = new()
+        {
+            Name = "Quiron.EntityFrameworkCore.Test",
+            Email = "text@quiron.entityframeworkcore.test.com",
+            Url = new Uri("https://quiron.entityframeworkcore.test.com")
         }
     });
 });
@@ -162,7 +167,7 @@ app.MapGet("classifications/{id}", async (
     IMemoryCache memoryCache,
     IMessagesProvider provider) =>
 {
-    OperationReturn operationReturn = new() { EntityName = "Classification", ReturnType = ReturnTypeEnum.Empty, Key = $"{id}", Field = "id" };
+    OperationReturn operationReturn = new() { EntityName = "Classification", ReturnType = ReturnTypeEnum.Empty, Key = $"{id}", Field = "id", Messages = [] };
 
     try
     {
@@ -172,12 +177,12 @@ app.MapGet("classifications/{id}", async (
 
         var classification = await classificationAppService.GetEntityByIdAsync(id);
 
-        var cacheOptions = new MemoryCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(50), SlidingExpiration = TimeSpan.FromMinutes(40)};
+        var cacheOptions = new MemoryCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(50), SlidingExpiration = TimeSpan.FromMinutes(40) };
         memoryCache.Set(key, classification, cacheOptions);
 
         return Results.Ok(classification);
     }
-    catch(Exception ex)
+    catch (Exception ex)
     {
         operationReturn.Messages.Add(new() { ReturnType = ReturnTypeEnum.Empty, Code = provider.Current.Error, Text = ex.Message });
     }
@@ -197,7 +202,7 @@ app.MapGet("classifications/{page}/{pageSize}/descriptions/{name}", async (
     IClassificationAppService classificationAppService,
     IMessagesProvider provider) =>
 {
-    OperationReturn operationReturn = new() { EntityName = "Classification", ReturnType = ReturnTypeEnum.Empty, Key = $"{name}", Field = "name" };
+    OperationReturn operationReturn = new() { EntityName = "Classification", ReturnType = ReturnTypeEnum.Empty, Key = $"{name}", Field = "name", Messages = [] };
 
     try
     {
@@ -222,7 +227,7 @@ app.MapGet("classifications/{page}/{pageSize}", async (
     IClassificationAppService classificationAppService,
     IMessagesProvider provider) =>
 {
-    OperationReturn operationReturn = new() { EntityName = "Classification", ReturnType = ReturnTypeEnum.Empty };
+    OperationReturn operationReturn = new() { EntityName = "Classification", ReturnType = ReturnTypeEnum.Empty, Messages = [] };
 
     try
     {
@@ -283,7 +288,7 @@ app.MapGet("clients/{id}", async (
     IMemoryCache memoryCache,
     IMessagesProvider provider) =>
 {
-    OperationReturn operationReturn = new() { EntityName = "Client", ReturnType = ReturnTypeEnum.Empty, Key = $"{id}", Field = "id" };
+    OperationReturn operationReturn = new() { EntityName = "Client", ReturnType = ReturnTypeEnum.Empty, Key = $"{id}", Field = "id", Messages = [] };
 
     try
     {
@@ -317,11 +322,17 @@ app.MapGet("clients/{page}/{pageSize}/names/{name}", async (
     IClientAppService clientAppService,
     IMessagesProvider provider) =>
 {
-    OperationReturn operationReturn = new() { EntityName = "Client", ReturnType = ReturnTypeEnum.Empty, Key = $"{name}", Field = "name" };
+    OperationReturn operationReturn = new() { EntityName = "Client", ReturnType = ReturnTypeEnum.Empty, Key = $"{name}", Field = "name", Messages = [] };
 
     try
     {
-        return Results.Ok(await clientAppService.Filter(find => find.Name!.Contains(name) && find.Active == ActiveEnum.S, page, pageSize));
+        return Results.Ok(await clientAppService.Filter(find => find.Name!.Contains(name) && find.Active == ActiveEnum.S
+                                                      , page
+                                                      , pageSize
+                                                      , "Person"
+                                                      , null
+                                                      , ["Person.Emails"]
+                                                      , inc => inc.Classification));
     }
     catch (Exception ex)
     {
@@ -336,6 +347,38 @@ app.MapGet("clients/{page}/{pageSize}/names/{name}", async (
 .WithName("GetClientForName")
 .WithTags("Clients");
 
+app.MapGet("clients/{personType}/types/{document}/documents", async (
+    string document,
+    int personType,
+    IClientAppService clientAppService,
+    IMyMessagesProvider provider) =>
+{
+    OperationReturn operationReturn = new() { EntityName = "Client", ReturnType = ReturnTypeEnum.Empty, Key = $"{document}", Field = "DocumentNumber", Messages = [] };
+
+    try
+    {
+        var typeCast = (PersonTypeEnum)personType == PersonTypeEnum.Phisic ? typeof(PhysicsPerson) : typeof(LegalPerson);
+        var personDocument = await clientAppService.Filter(find => (int)find.PersonType == personType && find.DocumentNumber == document
+                                                      , "Person"
+                                                      , typeCast
+                                                      , ["Person.Emails"]
+                                                      , inc => inc.Classification);
+
+        return Results.Ok(personDocument.FirstOrDefault());
+    }
+    catch (Exception ex)
+    {
+        operationReturn.Messages.Add(new() { ReturnType = ReturnTypeEnum.Empty, Code = provider.Current.Warning, Text = ex.Message });
+    }
+
+    return Results.BadRequest(operationReturn);
+})
+.Produces<ClientViewModel[]>(StatusCodes.Status200OK)
+.Produces<OperationReturn>(StatusCodes.Status400BadRequest)
+.Produces<OperationReturn>(StatusCodes.Status500InternalServerError)
+.WithName("GetClientForDocument")
+.WithTags("Clients");
+
 app.MapGet("clients/{page}/{pageSize}/{begin}/{end}/period", async (
     int page,
     int pageSize,
@@ -344,13 +387,17 @@ app.MapGet("clients/{page}/{pageSize}/{begin}/{end}/period", async (
     IClientAppService clientAppService,
     IMessagesProvider provider) =>
 {
-    OperationReturn operationReturn = new() { EntityName = "Client", ReturnType = ReturnTypeEnum.Empty, Key = $"{begin} e {end}", Field = "begin|end" };
+    OperationReturn operationReturn = new() { EntityName = "Client", ReturnType = ReturnTypeEnum.Empty, Key = $"{begin} e {end}", Field = "begin|end", Messages = [] };
 
     try
     {
-        return Results.Ok(await clientAppService.Filter(find => find.InclusionDate >= begin && 
+        return Results.Ok(await clientAppService.Filter(find => find.InclusionDate >= begin &&
                                                                 find.InclusionDate <= end
-                                                        , page, pageSize));
+                                                        , page
+                                                        , pageSize
+                                                        , "Person"
+                                                        , null
+                                                        , ["Person.Emails"]));
     }
     catch (Exception ex)
     {

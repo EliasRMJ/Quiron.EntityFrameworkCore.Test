@@ -5,16 +5,17 @@ using Quiron.EntityFrameworkCore.Interfaces;
 using Quiron.EntityFrameworkCore.Enuns;
 using Quiron.EntityFrameworkCore.Extensions;
 using Quiron.EntityFrameworkCore.Structs;
+using Quiron.EntityFrameworkCore.Test.Domain.Locations.Interfaces;
 
 namespace Quiron.EntityFrameworkCore.Test.Domain.Repositorys
 {
     public class ClientRepository(ContextTest contextTest
                                 , ILogger<PersistenceData<ContextTest, Client>> logger
                                 , ITransactionWork unitwork
-                                , IMessagesProvider provider)
+                                , IMyMessagesProvider provider)
         : PersistenceData<ContextTest, Client>(contextTest, logger, provider), IClientRepository
     {
-        public override async Task EntityHierarchy(Client element)
+        public async override Task EntityHierarchy(Client element)
         {
             await base.EntityHierarchy(element);
 
@@ -29,7 +30,7 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.Repositorys
             var client = await GetEntityByIdAsync(element.Id);
             if (client is null)
             {
-                _returnUpdate.Messages.Add(new() { Text = $"Client '{element.ClientId}' isn't found!", ReturnType = ReturnTypeEnum.Empty });
+                _returnUpdate.Messages.Add(new() { Text = provider.Current.EntityFound, ReturnType = ReturnTypeEnum.Empty });
                 return _returnUpdate;
             }
 
@@ -79,7 +80,7 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.Repositorys
                 _returnUpdate.ReturnType = ReturnTypeEnum.Error;
                 _returnUpdate.Messages.Add(new()
                 {
-                    Text = $"An unexpected error occurred while updating the provider '{element.Person.Name}'. Error: {ex.AggregateMessage()}",
+                    Text = $"{provider.MyCurrent.ExceptionUpdate} '{element.Person.Name}'. {provider.Current.Error}: {ex.AggregateMessage()}",
                     ReturnType = ReturnTypeEnum.Error,
                     Code = provider.Current.Error
                 });
@@ -88,11 +89,10 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.Repositorys
             return _returnUpdate;
         }
 
-        public override async Task<Client> GetEntityByIdAsync(long id)
+        public async override Task<Client> GetEntityByIdAsync(long id)
         {
             return await contextTest.Clients
                 .AsNoTrackingWithIdentityResolution()
-                .Include(inc => inc.Person!)
                 .Include(inc => inc.Classification)
                 .Include(inc => inc.Person.Emails)
                 .FirstOrDefaultAsync(find => find.ClientId == id);

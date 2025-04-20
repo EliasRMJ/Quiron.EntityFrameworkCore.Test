@@ -9,9 +9,12 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.Mapper
     {
         public AutoMapperProfile()
         {
+            #region Classification
             CreateMap<Classification, ClassificationViewModel>();
             CreateMap<ClassificationViewModel, Classification>();
+            #endregion
 
+            #region Person
             CreateMap<Client, ClientViewModel>()
                 .ForMember(d => d.ClientId, opt => opt.MapFrom(src => src.Person.Id))
                 .ForMember(d => d.ClassificationId, opt => opt.MapFrom(src => src.ClassificationId))
@@ -32,6 +35,7 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.Mapper
 
             CreateMap<EmailViewModel, EmailPerson>();
             CreateMap<EmailPerson, EmailViewModel>();
+            #endregion
         }
     }
 }
