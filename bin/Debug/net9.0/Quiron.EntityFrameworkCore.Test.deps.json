@@ -13,7 +13,7 @@
           "Microsoft.EntityFrameworkCore.Design": "9.0.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.4",
           "Microsoft.EntityFrameworkCore.Tools": "9.0.4",
-          "Quiron.EntityFrameworkCore": "1.2.2",
+          "Quiron.EntityFrameworkCore": "1.4.18",
           "Swashbuckle.AspNetCore": "7.3.2"
         },
         "runtime": {
@@ -879,7 +879,7 @@
           }
         }
       },
-      "Quiron.EntityFrameworkCore/1.2.2": {
+      "Quiron.EntityFrameworkCore/1.4.18": {
         "dependencies": {
           "AutoMapper": "14.0.0",
           "EntityFramework": "6.5.1",
@@ -892,8 +892,8 @@
         },
         "runtime": {
           "lib/net9.0/Quiron.EntityFrameworkCore.dll": {
-            "assemblyVersion": "1.2.2.1",
-            "fileVersion": "1.2.2.1"
+            "assemblyVersion": "1.4.18.1",
+            "fileVersion": "1.4.18.1"
           }
         }
       },
@@ -1696,12 +1696,12 @@
       "path": "portable.bouncycastle/1.9.0",
       "hashPath": "portable.bouncycastle.1.9.0.nupkg.sha512"
     },
-    "Quiron.EntityFrameworkCore/1.2.2": {
+    "Quiron.EntityFrameworkCore/1.4.18": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Sh6nZwsh2WvGiPTyGBrB2mmzW07oNEUV1qadDRgqZxo+N+c9ZXiIwgagFDliB42YL6Tjw9mJXuKHnkMmP5Jgjw==",
-      "path": "quiron.entityframeworkcore/1.2.2",
-      "hashPath": "quiron.entityframeworkcore.1.2.2.nupkg.sha512"
+      "sha512": "sha512-47RG13zkHPOAJuyjSF9bKNpADkdnbyZ+n3KpAOgK2VFUsmWh5Bfeq+qzuSbYRYi7w+8PofCFLqCKHSV3HRWzLQ==",
+      "path": "quiron.entityframeworkcore/1.4.18",
+      "hashPath": "quiron.entityframeworkcore.1.4.18.nupkg.sha512"
     },
     "runtime.native.System.Data.SqlClient.sni/4.7.0": {
       "type": "package",

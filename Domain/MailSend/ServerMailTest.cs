@@ -1,4 +1,5 @@
-﻿using MimeKit;
+﻿using Microsoft.Extensions.Configuration;
+using MimeKit;
 using Quiron.EntityFrameworkCore.Interfaces;
 using Quiron.EntityFrameworkCore.Mail;
 using Quiron.EntityFrameworkCore.Structs;

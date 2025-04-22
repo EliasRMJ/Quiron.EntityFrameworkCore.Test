@@ -6,5 +6,6 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.Locations.Interfaces
     {
         string RegisterNotFound { get; }
         string ExceptionUpdate { get; }
+        string InvalidOperation{ get; }
     }
 }

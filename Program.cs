@@ -19,6 +19,8 @@ using Quiron.EntityFrameworkCore.Test.Domain.MailSend;
 using Quiron.EntityFrameworkCore.Test.Domain.Locations;
 using Quiron.EntityFrameworkCore.Test.Domain.Locations.Interfaces;
 using Quiron.EntityFrameworkCore.Test.Domain.Entitys;
+using Quiron.EntityFrameworkCore.Test.Domain.Validations;
+using Quiron.EntityFrameworkCore.Test.Domain.Validations.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,10 +48,12 @@ builder.Services.AddSingleton<IMyMessagesProvider, MyMessagesProvider>();
 builder.Services.AddScoped(typeof(ITransactionWork), typeof(TransactionWork));
 
 builder.Services.AddScoped(typeof(IClassificationRepository), typeof(ClassificationRepository));
+builder.Services.AddScoped(typeof(IClassificationValidation), typeof(ClassificationValidation));
 builder.Services.AddScoped(typeof(IClassificationService), typeof(ClassificationService));
 builder.Services.AddScoped(typeof(IClassificationAppService), typeof(ClassificationAppService));
 
 builder.Services.AddScoped(typeof(IClientRepository), typeof(ClientRepository));
+builder.Services.AddScoped(typeof(IClientValidation), typeof(ClientValidation));
 builder.Services.AddScoped(typeof(IClientService), typeof(ClientService));
 builder.Services.AddScoped(typeof(IClientAppService), typeof(ClientAppService));
 
@@ -249,10 +253,10 @@ app.MapGet("classifications/{page}/{pageSize}", async (
 
 #region Swagger - Complex Test - Client
 app.MapPost("clients/create", async (
-    IClientAppService cliebtAppService,
+    IClientAppService clientAppService,
     ClientViewModel clientViewModel) =>
 {
-    var operationReturn = await cliebtAppService.CreateAsync(clientViewModel);
+    var operationReturn = await clientAppService.CreateAsync(clientViewModel);
     return operationReturn.IsSuccess ? Results.Ok(operationReturn) : Results.BadRequest(operationReturn);
 })
 .Produces<OperationReturn>(StatusCodes.Status200OK)
@@ -263,7 +267,7 @@ app.MapPost("clients/create", async (
 
 app.MapPut("{id}/clients/update", async (
     long id,
-    IClientAppService cliebtAppService,
+    IClientAppService clientAppService,
     IMemoryCache memoryCache,
     ClientViewModel clientViewModel) =>
 {
@@ -272,7 +276,7 @@ app.MapPut("{id}/clients/update", async (
         memoryCache.Remove(key);
 
     clientViewModel.ClientId = id;
-    var operationReturn = await cliebtAppService.UpdateAsync(clientViewModel);
+    var operationReturn = await clientAppService.UpdateAsync(clientViewModel);
 
     return operationReturn.IsSuccess ? Results.Ok(operationReturn) : Results.BadRequest(operationReturn);
 })
@@ -330,9 +334,7 @@ app.MapGet("clients/{page}/{pageSize}/names/{name}", async (
                                                       , page
                                                       , pageSize
                                                       , "Person"
-                                                      , null
-                                                      , ["Person.Emails"]
-                                                      , inc => inc.Classification));
+                                                      , ["Person.Emails", "Classification"]));
     }
     catch (Exception ex)
     {
@@ -358,11 +360,12 @@ app.MapGet("clients/{personType}/types/{document}/documents", async (
     try
     {
         var typeCast = (PersonTypeEnum)personType == PersonTypeEnum.Phisic ? typeof(PhysicsPerson) : typeof(LegalPerson);
-        var personDocument = await clientAppService.Filter(find => (int)find.PersonType == personType && find.DocumentNumber == document
-                                                      , "Person"
-                                                      , typeCast
-                                                      , ["Person.Emails"]
-                                                      , inc => inc.Classification);
+        var personDocument = await clientAppService.Filter(find => (int)find.PersonType == personType &&
+                                                                   find.DocumentNumber == document
+                                                          , "Person"
+                                                          , typeCast
+                                                          , ["Person.Emails"]
+                                                          , inc => inc.Classification);
 
         return Results.Ok(personDocument.FirstOrDefault());
     }
@@ -396,8 +399,7 @@ app.MapGet("clients/{page}/{pageSize}/{begin}/{end}/period", async (
                                                         , page
                                                         , pageSize
                                                         , "Person"
-                                                        , null
-                                                        , ["Person.Emails"]));
+                                                        , ["Person.Emails", "Classification"]));
     }
     catch (Exception ex)
     {

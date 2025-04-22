@@ -15,7 +15,7 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.Repositorys
                                 , IMyMessagesProvider provider)
         : PersistenceData<ContextTest, Client>(contextTest, logger, provider), IClientRepository
     {
-        public async override Task EntityHierarchy(Client element)
+        public override async Task EntityHierarchy(Client element)
         {
             await base.EntityHierarchy(element);
 
@@ -25,7 +25,13 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.Repositorys
 
         public async override Task<OperationReturn> UpdateAsync(Client element)
         {
-            var _returnUpdate = new OperationReturn { EntityName = "Client", ReturnType = ReturnTypeEnum.Empty, Field = "Id", Key = $"{element.ClientId}" };
+            var _returnUpdate = new OperationReturn 
+            { 
+                EntityName = element.GetType().Name, 
+                ReturnType = ReturnTypeEnum.Empty, 
+                Field = "Id", 
+                Key = $"{element.ClientId}" 
+            };
 
             var client = await GetEntityByIdAsync(element.Id);
             if (client is null)
@@ -89,10 +95,11 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.Repositorys
             return _returnUpdate;
         }
 
-        public async override Task<Client> GetEntityByIdAsync(long id)
+        public override async Task<Client> GetEntityByIdAsync(long id)
         {
             return await contextTest.Clients
                 .AsNoTrackingWithIdentityResolution()
+                .Include(inc => inc.Person!)
                 .Include(inc => inc.Classification)
                 .Include(inc => inc.Person.Emails)
                 .FirstOrDefaultAsync(find => find.ClientId == id);

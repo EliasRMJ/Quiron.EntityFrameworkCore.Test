@@ -17,7 +17,7 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.Entitys
         [Key, Column("ClientId")]
         public long ClientId { get; set; }
 
-        [MaxLength(2000, ErrorMessage = "Note cannot contain more than 2000 carecteres!")]
+        [MaxLength(2000, ErrorMessage = "Note can't contain more than 2000 carecteres!")]
         [Column("Note")]
         public string? Note { get; set; }
 

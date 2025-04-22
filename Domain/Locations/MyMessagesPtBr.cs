@@ -7,5 +7,6 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.Locations
     {
         public string RegisterNotFound => "Registro não encontrado";
         public string ExceptionUpdate => "Ocorreu um erro inesperado ao atualizar o provedor";
+        public string InvalidOperation => "Operação inválida!";
     }
 }

@@ -13,5 +13,6 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.AppServices
                                 , IMapper mapper
                                 , ILogger<ClientViewModel> logger
                                 , IMyMessagesProvider provider)
-        : AppServiceBase<ClientViewModel, Client>(clientService, transactionWork, mapper, logger, provider), IClientAppService { }
+        : AppServiceBase<ClientViewModel, Client>(clientService, transactionWork, mapper, logger, provider)
+        , IClientAppService { }
 }
