@@ -1,4 +1,6 @@
-﻿| Package |  Version | Popularity |
+﻿<img src="https://api.nuget.org/v3-flatcontainer/quiron.entityframeworkcore/1.4.18/icon" alt="Quiron.EntityFrameworkCore" width="300px" />
+
+| Package |  Version | Popularity |
 | ------- | ----- | ----- |
 | `Quiron.EntityFrameworkCore` | [![NuGet](https://img.shields.io/nuget/v/Quiron.EntityFrameworkCore.svg)](https://nuget.org/packages/Quiron.EntityFrameworkCore) | [![Nuget](https://img.shields.io/nuget/dt/Quiron.EntityFrameworkCore.svg)](https://nuget.org/packages/Quiron.EntityFrameworkCore) |
 
@@ -23,33 +25,33 @@ dotnet add package Quiron.EntityFrameworkCore
 
 ## Actions begining
 
-✅ Create a new DB in your SQL Server instance with the name 'Quiron.EntityFrameworkCore.Test' and change the connection string in the appsettings.json file to point to your DB.
-✅ Execute migrations to create the database structure. The migrations are already created in the project, so you don't need to worry about creating them. Just execute the command below to create the database structure.
+- ✅ Create a new DB in your SQL Server instance with the name 'Quiron.EntityFrameworkCore.Test' and change the connection string in the appsettings.json file to point to your DB.
+- ✅ Execute migrations to create the database structure. The migrations are already created in the project, so you don't need to worry about creating them. Just execute the command below to create the database structure.
 
 ## Commands for begin the tests
 
-✅ dotnet ef migrations add StartMigration --context Quiron.EntityFrameworkCore.Test.Domain.ContextTest --startup-project Quiron.EntityFrameworkCore.Test
-✅ dotnet ef database update --context Quiron.EntityFrameworkCore.Test.Domain.ContextTest --startup-project Quiron.EntityFrameworkCore.Test
+- ✅ dotnet ef migrations add StartMigration --context Quiron.EntityFrameworkCore.Test.Domain.ContextTest --startup-project Quiron.EntityFrameworkCore.Test
+- ✅ dotnet ef database update --context Quiron.EntityFrameworkCore.Test.Domain.ContextTest --startup-project Quiron.EntityFrameworkCore.Test
 
 ## Namespaces
 
-✅ Quiron.EntityFrameworkCore
-✅ Quiron.EntityFrameworkCore.AppServices
-✅ Quiron.EntityFrameworkCore.Constants
-✅ Quiron.EntityFrameworkCore.CrossCutting
-✅ Quiron.EntityFrameworkCore.Entitys
-✅ Quiron.EntityFrameworkCore.Enuns
-✅ Quiron.EntityFrameworkCore.Extensions
-✅ Quiron.EntityFrameworkCore.Interfaces
-✅ Quiron.EntityFrameworkCore.Mail
-✅ Quiron.EntityFrameworkCore.MessagesProvider
-✅ Quiron.EntityFrameworkCore.MessagesProvider.Locations
-✅ Quiron.EntityFrameworkCore.Repositorys
-✅ Quiron.EntityFrameworkCore.Services
-✅ Quiron.EntityFrameworkCore.Structs
-✅ Quiron.EntityFrameworkCore.Transactions
-✅ Quiron.EntityFrameworkCore.Utils
-✅ Quiron.EntityFrameworkCore.Validations
+- ✅ Quiron.EntityFrameworkCore
+- ✅ Quiron.EntityFrameworkCore.AppServices
+- ✅ Quiron.EntityFrameworkCore.Constants
+- ✅ Quiron.EntityFrameworkCore.CrossCutting
+- ✅ Quiron.EntityFrameworkCore.Entitys
+- ✅ Quiron.EntityFrameworkCore.Enuns
+- ✅ Quiron.EntityFrameworkCore.Extensions
+- ✅ Quiron.EntityFrameworkCore.Interfaces
+- ✅ Quiron.EntityFrameworkCore.Mail
+- ✅ Quiron.EntityFrameworkCore.MessagesProvider
+- ✅ Quiron.EntityFrameworkCore.MessagesProvider.Locations
+- ✅ Quiron.EntityFrameworkCore.Repositorys
+- ✅ Quiron.EntityFrameworkCore.Services
+- ✅ Quiron.EntityFrameworkCore.Structs
+- ✅ Quiron.EntityFrameworkCore.Transactions
+- ✅ Quiron.EntityFrameworkCore.Utils
+- ✅ Quiron.EntityFrameworkCore.Validations
 
 ## Basic Usage
 
@@ -176,9 +178,10 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.Validations
 ## Compatibility
 
 Supports:
-✅ .NET Standard 2.1  
-✅ .NET 9 through 9 (including latest versions)  
-⚠️ Legacy support for .NET Core 3.1 and older (with limitations)
+
+- ✅ .NET Standard 2.1  
+- ✅ .NET 9 through 9 (including latest versions)  
+- ⚠️ Legacy support for .NET Core 3.1 and older (with limitations)
   
 ## About
 Quiron.EntityFrameworkCore was developed by [EliasRMJ](https://www.linkedin.com/in/elias-medeiros-98232066/) under the [MIT license](LICENSE).
