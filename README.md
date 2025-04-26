@@ -1,35 +1,58 @@
-# Quiron.EntityFrameworkCore.Test
+﻿| Package |  Version | Popularity |
+| ------- | ----- | ----- |
+| `Quiron.EntityFrameworkCore` | [![NuGet](https://img.shields.io/nuget/v/Quiron.EntityFrameworkCore.svg)](https://nuget.org/packages/Quiron.EntityFrameworkCore) | [![Nuget](https://img.shields.io/nuget/dt/Quiron.EntityFrameworkCore.svg)](https://nuget.org/packages/Quiron.EntityFrameworkCore) |
+
+
+## What is the .NET Quiron.EntityFrameworkCore?
+
 In order to speed up the development of more robust systems, the 'Quiron.EntityFrameworkCore' package was created. With all the features provided by it, you will focus on developing your business in the application, without wasting time on creating persistence methods and filters.
 
 For this reason, a practical example of how to use the package in a very detailed way was created, from simple to more complex examples.
 
-# Actions begining
-- [x] Create a new DB in your SQL Server instance with the name 'Quiron.EntityFrameworkCore.Test' and change the connection string in the appsettings.json file to point to your DB.
-- [x] Execute migrations to create the database structure. The migrations are already created in the project, so you don't need to worry about creating them. Just execute the command below to create the database structure.
+## Give a Star! ⭐
 
-# Commands for begin the tests
-- [x] dotnet ef migrations add StartMigration --context Quiron.EntityFrameworkCore.Test.Domain.ContextTest --startup-project Quiron.EntityFrameworkCore.Test
-- [x] dotnet ef database update --context Quiron.EntityFrameworkCore.Test.Domain.ContextTest --startup-project Quiron.EntityFrameworkCore.Test
+If you find this project useful, please give it a star! It helps us grow and improve the community.
 
-# Namespaces
-- [x] Quiron.EntityFrameworkCore
-- [x] Quiron.EntityFrameworkCore.AppServices
-- [x] Quiron.EntityFrameworkCore.Constants
-- [x] Quiron.EntityFrameworkCore.CrossCutting
-- [x] Quiron.EntityFrameworkCore.Entitys
-- [x] Quiron.EntityFrameworkCore.Enuns
-- [x] Quiron.EntityFrameworkCore.Extensions
-- [x] Quiron.EntityFrameworkCore.Interfaces
-- [x] Quiron.EntityFrameworkCore.Mail
-- [x] Quiron.EntityFrameworkCore.MessagesProvider
-- [x] Quiron.EntityFrameworkCore.MessagesProvider.Locations
-- [x] Quiron.EntityFrameworkCore.Repositorys
-- [x] Quiron.EntityFrameworkCore.Services
-- [x] Quiron.EntityFrameworkCore.Structs
-- [x] Quiron.EntityFrameworkCore.Transactions
-- [x] Quiron.EntityFrameworkCore.Utils
+## Installation
 
-# Features
+Install via NuGet:
+
+```bash
+dotnet add package Quiron.EntityFrameworkCore
+```
+
+## Actions begining
+
+- ✅ Create a new DB in your SQL Server instance with the name 'Quiron.EntityFrameworkCore.Test' and change the connection string in the appsettings.json file to point to your DB.
+- ✅ Execute migrations to create the database structure. The migrations are already created in the project, so you don't need to worry about creating them. Just execute the command below to create the database structure.
+
+## Commands for begin the tests
+
+- ✅ dotnet ef migrations add StartMigration --context Quiron.EntityFrameworkCore.Test.Domain.ContextTest --startup-project Quiron.EntityFrameworkCore.Test
+- ✅ dotnet ef database update --context Quiron.EntityFrameworkCore.Test.Domain.ContextTest --startup-project Quiron.EntityFrameworkCore.Test
+
+## Namespaces
+
+- ✅ Quiron.EntityFrameworkCore
+- ✅ Quiron.EntityFrameworkCore.AppServices
+- ✅ Quiron.EntityFrameworkCore.Constants
+- ✅ Quiron.EntityFrameworkCore.CrossCutting
+- ✅ Quiron.EntityFrameworkCore.Entitys
+- ✅ Quiron.EntityFrameworkCore.Enuns
+- ✅ Quiron.EntityFrameworkCore.Extensions
+- ✅ Quiron.EntityFrameworkCore.Interfaces
+- ✅ Quiron.EntityFrameworkCore.Mail
+- ✅ Quiron.EntityFrameworkCore.MessagesProvider
+- ✅ Quiron.EntityFrameworkCore.MessagesProvider.Locations
+- ✅ Quiron.EntityFrameworkCore.Repositorys
+- ✅ Quiron.EntityFrameworkCore.Services
+- ✅ Quiron.EntityFrameworkCore.Structs
+- ✅ Quiron.EntityFrameworkCore.Transactions
+- ✅ Quiron.EntityFrameworkCore.Utils
+- ✅ Quiron.EntityFrameworkCore.Validations
+
+## Features
+
 - **Unit of Work**: The package implements the Unit of Work pattern, allowing you to manage multiple repositories and transactions in a single context.
 - **Repository**: The package provides a generic repository implementation, allowing you to perform CRUD operations on your entities easily.
 - **Filters**: The package allows you to define filters for your entities, enabling you to apply common filtering logic across multiple queries.
