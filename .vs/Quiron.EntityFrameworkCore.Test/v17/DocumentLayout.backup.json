@@ -1,36 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|c:\\meus projetos gui\\sgs v_w\\quiron.entityframeworkcore.test\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
-      "RelativeMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|solutionrelative:readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|c:\\meus projetos gui\\sgs v_w\\quiron.entityframeworkcore.test\\domain\\validations\\classificationvalidation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|solutionrelative:domain\\validations\\classificationvalidation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|c:\\meus projetos gui\\sgs v_w\\quiron.entityframeworkcore.test\\domain\\appservices\\iclassificationappservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|solutionrelative:domain\\appservices\\iclassificationappservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|c:\\meus projetos gui\\sgs v_w\\quiron.entityframeworkcore.test\\domain\\services\\iclassificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|solutionrelative:domain\\services\\iclassificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|c:\\meus projetos gui\\sgs v_w\\quiron.entityframeworkcore.test\\domain\\repositorys\\iclassificationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|solutionrelative:domain\\repositorys\\iclassificationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|c:\\meus projetos gui\\sgs v_w\\quiron.entityframeworkcore.test\\domain\\entitys\\classification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|solutionrelative:domain\\entitys\\classification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|c:\\meus projetos gui\\sgs v_w\\quiron.entityframeworkcore.test\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -38,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -71,97 +42,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ClassificationValidation.cs",
-              "DocumentMoniker": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Domain\\Validations\\ClassificationValidation.cs",
-              "RelativeDocumentMoniker": "Domain\\Validations\\ClassificationValidation.cs",
-              "ToolTip": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Domain\\Validations\\ClassificationValidation.cs",
-              "RelativeToolTip": "Domain\\Validations\\ClassificationValidation.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T12:54:11.409Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IClassificationAppService.cs",
-              "DocumentMoniker": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Domain\\AppServices\\IClassificationAppService.cs",
-              "RelativeDocumentMoniker": "Domain\\AppServices\\IClassificationAppService.cs",
-              "ToolTip": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Domain\\AppServices\\IClassificationAppService.cs",
-              "RelativeToolTip": "Domain\\AppServices\\IClassificationAppService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T12:52:25.077Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IClassificationService.cs",
-              "DocumentMoniker": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Domain\\Services\\IClassificationService.cs",
-              "RelativeDocumentMoniker": "Domain\\Services\\IClassificationService.cs",
-              "ToolTip": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Domain\\Services\\IClassificationService.cs",
-              "RelativeToolTip": "Domain\\Services\\IClassificationService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T12:51:41.041Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IClassificationRepository.cs",
-              "DocumentMoniker": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Domain\\Repositorys\\IClassificationRepository.cs",
-              "RelativeDocumentMoniker": "Domain\\Repositorys\\IClassificationRepository.cs",
-              "ToolTip": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Domain\\Repositorys\\IClassificationRepository.cs",
-              "RelativeToolTip": "Domain\\Repositorys\\IClassificationRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T12:50:47.638Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Classification.cs",
-              "DocumentMoniker": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Domain\\Entitys\\Classification.cs",
-              "RelativeDocumentMoniker": "Domain\\Entitys\\Classification.cs",
-              "ToolTip": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Domain\\Entitys\\Classification.cs",
-              "RelativeToolTip": "Domain\\Entitys\\Classification.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T12:47:53.832Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "README.md",
-              "DocumentMoniker": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\README.md",
-              "RelativeDocumentMoniker": "README.md",
-              "ToolTip": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\README.md",
-              "RelativeToolTip": "README.md",
-              "ViewState": "AgIAAHAAAAAAAAAAAADwv3wAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2025-04-26T12:31:38.932Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAIwE8AAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T20:48:05.655Z",
-              "EditorCaption": ""
             }
           ]
         }

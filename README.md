@@ -5,7 +5,7 @@
 | `Quiron.EntityFrameworkCore` | [![NuGet](https://img.shields.io/nuget/v/Quiron.EntityFrameworkCore.svg)](https://nuget.org/packages/Quiron.EntityFrameworkCore) | [![Nuget](https://img.shields.io/nuget/dt/Quiron.EntityFrameworkCore.svg)](https://nuget.org/packages/Quiron.EntityFrameworkCore) |
 
 
-## What is the .NET Quiron.EntityFrameworkCore?
+## What is the Quiron.EntityFrameworkCore?
 
 To accelerate the development of more robust systems, the "Quiron.EntityFrameworkCore" package was created. With all the features offered and the best practices and methodology currently used, you will focus on developing your business in the application, without wasting time creating persistence methods and filters.
 
