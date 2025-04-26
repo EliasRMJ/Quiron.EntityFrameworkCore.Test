@@ -7,7 +7,7 @@
 
 ## What is the .NET Quiron.EntityFrameworkCore?
 
-In order to speed up the development of more robust systems, the 'Quiron.EntityFrameworkCore' package was created. With all the features provided by it, you will focus on developing your business in the application, without wasting time on creating persistence methods and filters.
+To accelerate the development of more robust systems, the "Quiron.EntityFrameworkCore" package was created. With all the features offered and the best practices and methodology currently used, you will focus on developing your business in the application, without wasting time creating persistence methods and filters.
 
 For this reason, a practical example of how to use the package in a very detailed way was created, from simple to more complex examples.
 
