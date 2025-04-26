@@ -1,4 +1,4 @@
-﻿<img src="https://api.nuget.org/v3-flatcontainer/quiron.entityframeworkcore/1.4.18/icon" alt="Quiron.EntityFrameworkCore" width="300px" />
+﻿<img src="https://api.nuget.org/v3-flatcontainer/quiron.entityframeworkcore/1.4.18/icon" alt="Quiron.EntityFrameworkCore" width="80px" />
 
 | Package |  Version | Popularity |
 | ------- | ----- | ----- |
