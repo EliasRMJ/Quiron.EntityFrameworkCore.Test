@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|c:\\meus projetos gui\\sgs v_w\\quiron.entityframeworkcore.test\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|solutionrelative:readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|c:\\meus projetos gui\\sgs v_w\\quiron.entityframeworkcore.test\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -51,6 +55,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "README.md",
+              "DocumentMoniker": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\README.md",
+              "RelativeDocumentMoniker": "README.md",
+              "ToolTip": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\README.md",
+              "RelativeToolTip": "README.md",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAD4AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-04-26T12:31:38.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",

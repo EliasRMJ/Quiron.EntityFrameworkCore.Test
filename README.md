@@ -23,33 +23,129 @@ dotnet add package Quiron.EntityFrameworkCore
 
 ## Actions begining
 
-- ✅ Create a new DB in your SQL Server instance with the name 'Quiron.EntityFrameworkCore.Test' and change the connection string in the appsettings.json file to point to your DB.
-- ✅ Execute migrations to create the database structure. The migrations are already created in the project, so you don't need to worry about creating them. Just execute the command below to create the database structure.
+✅ Create a new DB in your SQL Server instance with the name 'Quiron.EntityFrameworkCore.Test' and change the connection string in the appsettings.json file to point to your DB.
+✅ Execute migrations to create the database structure. The migrations are already created in the project, so you don't need to worry about creating them. Just execute the command below to create the database structure.
 
 ## Commands for begin the tests
 
-- ✅ dotnet ef migrations add StartMigration --context Quiron.EntityFrameworkCore.Test.Domain.ContextTest --startup-project Quiron.EntityFrameworkCore.Test
-- ✅ dotnet ef database update --context Quiron.EntityFrameworkCore.Test.Domain.ContextTest --startup-project Quiron.EntityFrameworkCore.Test
+✅ dotnet ef migrations add StartMigration --context Quiron.EntityFrameworkCore.Test.Domain.ContextTest --startup-project Quiron.EntityFrameworkCore.Test
+✅ dotnet ef database update --context Quiron.EntityFrameworkCore.Test.Domain.ContextTest --startup-project Quiron.EntityFrameworkCore.Test
 
 ## Namespaces
 
-- ✅ Quiron.EntityFrameworkCore
-- ✅ Quiron.EntityFrameworkCore.AppServices
-- ✅ Quiron.EntityFrameworkCore.Constants
-- ✅ Quiron.EntityFrameworkCore.CrossCutting
-- ✅ Quiron.EntityFrameworkCore.Entitys
-- ✅ Quiron.EntityFrameworkCore.Enuns
-- ✅ Quiron.EntityFrameworkCore.Extensions
-- ✅ Quiron.EntityFrameworkCore.Interfaces
-- ✅ Quiron.EntityFrameworkCore.Mail
-- ✅ Quiron.EntityFrameworkCore.MessagesProvider
-- ✅ Quiron.EntityFrameworkCore.MessagesProvider.Locations
-- ✅ Quiron.EntityFrameworkCore.Repositorys
-- ✅ Quiron.EntityFrameworkCore.Services
-- ✅ Quiron.EntityFrameworkCore.Structs
-- ✅ Quiron.EntityFrameworkCore.Transactions
-- ✅ Quiron.EntityFrameworkCore.Utils
-- ✅ Quiron.EntityFrameworkCore.Validations
+✅ Quiron.EntityFrameworkCore
+✅ Quiron.EntityFrameworkCore.AppServices
+✅ Quiron.EntityFrameworkCore.Constants
+✅ Quiron.EntityFrameworkCore.CrossCutting
+✅ Quiron.EntityFrameworkCore.Entitys
+✅ Quiron.EntityFrameworkCore.Enuns
+✅ Quiron.EntityFrameworkCore.Extensions
+✅ Quiron.EntityFrameworkCore.Interfaces
+✅ Quiron.EntityFrameworkCore.Mail
+✅ Quiron.EntityFrameworkCore.MessagesProvider
+✅ Quiron.EntityFrameworkCore.MessagesProvider.Locations
+✅ Quiron.EntityFrameworkCore.Repositorys
+✅ Quiron.EntityFrameworkCore.Services
+✅ Quiron.EntityFrameworkCore.Structs
+✅ Quiron.EntityFrameworkCore.Transactions
+✅ Quiron.EntityFrameworkCore.Utils
+✅ Quiron.EntityFrameworkCore.Validations
+
+## Basic Usage
+
+### Domain Entity
+
+```csharp
+using Quiron.EntityFrameworkCore.Entitys;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
+
+namespace Quiron.EntityFrameworkCore.Test.Domain.Entitys
+{
+    [DebuggerDisplay("{Name}")]
+    [DisplayName("Classification")]
+    [Table("Classification")]
+    public class Classification : EntityTypeBase { }
+}
+```
+
+### Repositorys Interface
+
+```csharp
+using Quiron.EntityFrameworkCore.Interfaces;
+using Quiron.EntityFrameworkCore.Test.Domain.Entitys;
+
+namespace Quiron.EntityFrameworkCore.Test.Domain.Repositorys
+{
+    public interface IClassificationRepository : IRepositoryBase<Classification> { }
+}
+```
+
+### Services Interface
+
+```csharp
+using Quiron.EntityFrameworkCore.Interfaces;
+using Quiron.EntityFrameworkCore.Test.Domain.Entitys;
+
+namespace Quiron.EntityFrameworkCore.Test.Domain.Services
+{
+    public interface IClassificationService : IServiceBase<Classification>{ }
+}
+```
+
+### AppServices Interface
+
+```csharp
+using Quiron.EntityFrameworkCore.Enuns;
+using Quiron.EntityFrameworkCore.Interfaces;
+using Quiron.EntityFrameworkCore.Structs;
+using Quiron.EntityFrameworkCore.Test.Domain.ViewModels;
+
+namespace Quiron.EntityFrameworkCore.Test.Domain.AppServices
+{
+    public interface IClassificationAppService : IAppServiceBase<ClassificationViewModel>
+    { 
+        Task<OperationReturn> ChangeStatusAsync(long id, ActiveEnum status);
+    }
+}
+```
+
+### Validations
+
+```csharp
+using Quiron.EntityFrameworkCore.Interfaces;
+using Quiron.EntityFrameworkCore.Test.Domain.Entitys;
+using Quiron.EntityFrameworkCore.Test.Domain.Locations.Interfaces;
+using Quiron.EntityFrameworkCore.Test.Domain.Services;
+using Quiron.EntityFrameworkCore.Test.Domain.Validations.Interfaces;
+using Quiron.EntityFrameworkCore.Validations;
+
+namespace Quiron.EntityFrameworkCore.Test.Domain.Validations
+{
+    public class ClassificationValidation(IClientService clientService
+                                        , IMyMessagesProvider messagesProvider)
+        : ValidationBase<Classification>(messagesProvider), IClassificationValidation
+    {
+        public override async Task Validate(IElement element)
+        {
+            await base.Validate(element);
+
+            if (this.IsValid)
+            {
+                var classification = element as Classification;
+
+                if (classification!.Active == Enuns.ActiveEnum.N)
+                {
+                    var clients = await clientService.Filter(find => find.ClassificationId == classification.Id);
+                    if (clients.Any())
+                        _messages.Add(messagesProvider.MyCurrent.InvalidOperation);
+                }
+            }
+        }
+    }
+}
+```
 
 ## Features
 
@@ -75,3 +171,14 @@ dotnet add package Quiron.EntityFrameworkCore
 - **Custom Validation**: The package provides built-in support for custom validation, allowing you to define your own validation rules for your entities.
 - **Custom Filters**: The package provides built-in support for custom filters, allowing you to define your own filtering rules for your entities.
 - **Custom Logging**: The package provides built-in support for custom logging, allowing you to define your own logging rules for your entities.
+
+
+## Compatibility
+
+Supports:
+✅ .NET Standard 2.1  
+✅ .NET 9 through 9 (including latest versions)  
+⚠️ Legacy support for .NET Core 3.1 and older (with limitations)
+  
+## About
+Quiron.EntityFrameworkCore was developed by [EliasRMJ](https://www.linkedin.com/in/elias-medeiros-98232066/) under the [MIT license](LICENSE).
