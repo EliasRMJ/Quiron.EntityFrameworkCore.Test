@@ -3,18 +3,18 @@ using Microsoft.Extensions.Caching.Memory;
 using Asp.Versioning;
 using Quiron.EntityFrameworkCore.Enuns;
 using Quiron.EntityFrameworkCore.Structs;
+using Quiron.EntityFrameworkCore.Interfaces;
+using Quiron.EntityFrameworkCore.CrossCutting.Logging;
+using Quiron.EntityFrameworkCore.MessagesProvider.Locations;
+using Quiron.EntityFrameworkCore.MessagesProvider;
 using Quiron.EntityFrameworkCore.Test.Domain;
 using Quiron.EntityFrameworkCore.Test.Domain.ViewModels;
 using Quiron.EntityFrameworkCore.Test.Domain.Repositorys;
 using Quiron.EntityFrameworkCore.Test.Domain.Services;
 using Quiron.EntityFrameworkCore.Test.Domain.AppServices;
 using Quiron.EntityFrameworkCore.Test.Domain.Mapper;
-using Quiron.EntityFrameworkCore.CrossCutting.Logging;
 using Quiron.EntityFrameworkCore.Test.Middleware;
-using Quiron.EntityFrameworkCore.Interfaces;
 using Quiron.EntityFrameworkCore.Test.Domain.Transaction;
-using Quiron.EntityFrameworkCore.MessagesProvider.Locations;
-using Quiron.EntityFrameworkCore.MessagesProvider;
 using Quiron.EntityFrameworkCore.Test.Domain.MailSend;
 using Quiron.EntityFrameworkCore.Test.Domain.Locations;
 using Quiron.EntityFrameworkCore.Test.Domain.Locations.Interfaces;
@@ -184,14 +184,19 @@ app.MapGet("classifications/{id}", async (
         var cacheOptions = new MemoryCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(50), SlidingExpiration = TimeSpan.FromMinutes(40) };
         memoryCache.Set(key, classification, cacheOptions);
 
-        return Results.Ok(classification);
+        return classification is not null ? Results.Ok(classification) : Results.BadRequest(new OperationReturn
+        {
+            EntityName = "Classification",
+            ReturnType = ReturnTypeEnum.Empty,
+            Messages = [new() { ReturnType = ReturnTypeEnum.Empty, Code = provider.Current.Warning, Text = provider.Current.NoResult }]
+        });
     }
     catch (Exception ex)
     {
         operationReturn.Messages.Add(new() { ReturnType = ReturnTypeEnum.Empty, Code = provider.Current.Error, Text = ex.Message });
     }
 
-    return Results.BadRequest(operationReturn);
+    return Results.InternalServerError(operationReturn);
 })
 .Produces<ClassificationViewModel>(StatusCodes.Status200OK)
 .Produces<OperationReturn>(StatusCodes.Status400BadRequest)
@@ -210,14 +215,21 @@ app.MapGet("classifications/{page}/{pageSize}/descriptions/{name}", async (
 
     try
     {
-        return Results.Ok(await classificationAppService.Filter(find => find.Name!.Contains(name), page, pageSize));
+        var result = await classificationAppService.Filter(find => find.Name!.Contains(name), page, pageSize);
+
+        return result.Any() ? Results.Ok(result) : Results.BadRequest(new OperationReturn
+        {
+            EntityName = "Classification",
+            ReturnType = ReturnTypeEnum.Empty,
+            Messages = [new() { ReturnType = ReturnTypeEnum.Empty, Code = provider.Current.Warning, Text = provider.Current.NoResultList }]
+        });
     }
     catch (Exception ex)
     {
         operationReturn.Messages.Add(new() { ReturnType = ReturnTypeEnum.Empty, Code = provider.Current.Warning, Text = ex.Message });
     }
 
-    return Results.BadRequest(operationReturn);
+    return Results.InternalServerError(operationReturn);
 })
 .Produces<ClassificationViewModel[]>(StatusCodes.Status200OK)
 .Produces<OperationReturn>(StatusCodes.Status400BadRequest)
@@ -235,14 +247,21 @@ app.MapGet("classifications/{page}/{pageSize}", async (
 
     try
     {
-        return Results.Ok(await classificationAppService.Paginate(page, pageSize));
+        var result = await classificationAppService.Paginate(page, pageSize);
+
+        return result.Any() ? Results.Ok(result) : Results.BadRequest(new OperationReturn
+        {
+            EntityName = "Classification",
+            ReturnType = ReturnTypeEnum.Empty,
+            Messages = [new() { ReturnType = ReturnTypeEnum.Empty, Code = provider.Current.Warning, Text = provider.Current.NoResultList }]
+        });
     }
     catch (Exception ex)
     {
         operationReturn.Messages.Add(new() { ReturnType = ReturnTypeEnum.Empty, Code = provider.Current.Warning, Text = ex.Message });
     }
 
-    return Results.BadRequest(operationReturn);
+    return Results.InternalServerError(operationReturn);
 })
 .Produces<ClassificationViewModel[]>(StatusCodes.Status200OK)
 .Produces<OperationReturn>(StatusCodes.Status400BadRequest)
@@ -304,14 +323,19 @@ app.MapGet("clients/{id}", async (
         var cacheOptions = new MemoryCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(50), SlidingExpiration = TimeSpan.FromMinutes(40) };
         memoryCache.Set(key, client, cacheOptions);
 
-        return Results.Ok(client);
+        return client is not null ? Results.Ok(client) : Results.BadRequest(new OperationReturn
+        {
+            EntityName = "Client",
+            ReturnType = ReturnTypeEnum.Empty,
+            Messages = [new() { ReturnType = ReturnTypeEnum.Empty, Code = provider.Current.Warning, Text = provider.Current.NoResult }]
+        });
     }
     catch (Exception ex)
     {
         operationReturn.Messages.Add(new() { ReturnType = ReturnTypeEnum.Empty, Code = provider.Current.Warning, Text = ex.Message });
     }
 
-    return Results.BadRequest(operationReturn);
+    return Results.InternalServerError(operationReturn);
 })
 .Produces<ClientViewModel>(StatusCodes.Status200OK)
 .Produces<OperationReturn>(StatusCodes.Status400BadRequest)
@@ -330,18 +354,26 @@ app.MapGet("clients/{page}/{pageSize}/names/{name}", async (
 
     try
     {
-        return Results.Ok(await clientAppService.Filter(find => find.Name!.Contains(name) && find.Active == ActiveEnum.S
+        var result = await clientAppService.Filter(find => find.Name!.Contains(name) && find.Active == ActiveEnum.S
                                                       , page
                                                       , pageSize
                                                       , "Person"
-                                                      , ["Person.Emails", "Classification"]));
+                                                      , ["Person.Emails", "Classification"]);
+
+        return result.Any() ? Results.Ok(result) : Results.BadRequest(new OperationReturn
+        {
+            EntityName = "Client",
+            ReturnType = ReturnTypeEnum.Empty,
+            Messages = [new() { ReturnType = ReturnTypeEnum.Empty, Code = provider.Current.Warning, Text = provider.Current.NoResultList }]
+        });
+
     }
     catch (Exception ex)
     {
         operationReturn.Messages.Add(new() { ReturnType = ReturnTypeEnum.Empty, Code = provider.Current.Warning, Text = ex.Message });
     }
 
-    return Results.BadRequest(operationReturn);
+    return Results.InternalServerError(operationReturn);
 })
 .Produces<ClientViewModel[]>(StatusCodes.Status200OK)
 .Produces<OperationReturn>(StatusCodes.Status400BadRequest)
@@ -367,14 +399,21 @@ app.MapGet("clients/{personType}/types/{document}/documents", async (
                                                           , ["Person.Emails"]
                                                           , inc => inc.Classification);
 
-        return Results.Ok(personDocument.FirstOrDefault());
+        return personDocument.Any() ? Results.Ok(personDocument.FirstOrDefault()) : Results.BadRequest(new OperationReturn
+        {
+            EntityName = "Client",
+            Field = "DocumentNumber",
+            Key = $"{document}",
+            ReturnType = ReturnTypeEnum.Empty,
+            Messages = [new() { ReturnType = ReturnTypeEnum.Empty, Code = provider.Current.Warning, Text = provider.Current.NoResult }]
+        });
     }
     catch (Exception ex)
     {
         operationReturn.Messages.Add(new() { ReturnType = ReturnTypeEnum.Empty, Code = provider.Current.Warning, Text = ex.Message });
     }
 
-    return Results.BadRequest(operationReturn);
+    return Results.InternalServerError(operationReturn);
 })
 .Produces<ClientViewModel[]>(StatusCodes.Status200OK)
 .Produces<OperationReturn>(StatusCodes.Status400BadRequest)
@@ -394,19 +433,26 @@ app.MapGet("clients/{page}/{pageSize}/{begin}/{end}/period", async (
 
     try
     {
-        return Results.Ok(await clientAppService.Filter(find => find.InclusionDate >= begin &&
-                                                                find.InclusionDate <= end
-                                                        , page
-                                                        , pageSize
-                                                        , "Person"
-                                                        , ["Person.Emails", "Classification"]));
+        var result = await clientAppService.Filter(find => find.InclusionDate >= begin &&
+                                                           find.InclusionDate <= end
+                                                    , page
+                                                    , pageSize
+                                                    , "Person"
+                                                    , ["Person.Emails", "Classification"]);
+
+        return result.Any() ? Results.Ok(result) : Results.BadRequest(new OperationReturn
+        {
+            EntityName = "Client",
+            ReturnType = ReturnTypeEnum.Empty,
+            Messages = [new() { ReturnType = ReturnTypeEnum.Empty, Code = provider.Current.Warning, Text = provider.Current.NoResultList }]
+        });
     }
     catch (Exception ex)
     {
         operationReturn.Messages.Add(new() { ReturnType = ReturnTypeEnum.Empty, Code = provider.Current.Warning, Text = ex.Message });
     }
 
-    return Results.BadRequest(operationReturn);
+    return Results.InternalServerError(operationReturn);
 })
 .Produces<ClientViewModel[]>(StatusCodes.Status200OK)
 .Produces<OperationReturn>(StatusCodes.Status400BadRequest)
