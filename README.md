@@ -37,20 +37,16 @@ dotnet add package Quiron.EntityFrameworkCore
 
 - ✅ Quiron.EntityFrameworkCore
 - ✅ Quiron.EntityFrameworkCore.AppServices
-- ✅ Quiron.EntityFrameworkCore.Constants
 - ✅ Quiron.EntityFrameworkCore.CrossCutting
 - ✅ Quiron.EntityFrameworkCore.Entitys
 - ✅ Quiron.EntityFrameworkCore.Enuns
-- ✅ Quiron.EntityFrameworkCore.Extensions
 - ✅ Quiron.EntityFrameworkCore.Interfaces
-- ✅ Quiron.EntityFrameworkCore.Mail
 - ✅ Quiron.EntityFrameworkCore.MessagesProvider
 - ✅ Quiron.EntityFrameworkCore.MessagesProvider.Locations
 - ✅ Quiron.EntityFrameworkCore.Repositorys
 - ✅ Quiron.EntityFrameworkCore.Services
 - ✅ Quiron.EntityFrameworkCore.Structs
 - ✅ Quiron.EntityFrameworkCore.Transactions
-- ✅ Quiron.EntityFrameworkCore.Utils
 - ✅ Quiron.EntityFrameworkCore.Validations
 
 ## Basic Usage
