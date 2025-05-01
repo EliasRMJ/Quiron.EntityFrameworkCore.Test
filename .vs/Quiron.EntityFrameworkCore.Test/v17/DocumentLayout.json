@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|c:\\meus projetos gui\\sgs v_w\\quiron.entityframeworkcore.test\\domain\\repositorys\\clientrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|solutionrelative:domain\\repositorys\\clientrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|c:\\meus projetos gui\\sgs v_w\\quiron.entityframeworkcore.test\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|c:\\meus projetos gui\\sgs v_w\\quiron.entityframeworkcore.test\\quiron.entityframeworkcore.test.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{F1BD6803-0AB7-5521-021B-8C45BC153417}|Quiron.EntityFrameworkCore.Test.csproj|solutionrelative:quiron.entityframeworkcore.test.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -55,27 +51,13 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ClientRepository.cs",
-              "DocumentMoniker": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Domain\\Repositorys\\ClientRepository.cs",
-              "RelativeDocumentMoniker": "Domain\\Repositorys\\ClientRepository.cs",
-              "ToolTip": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Domain\\Repositorys\\ClientRepository.cs",
-              "RelativeToolTip": "Domain\\Repositorys\\ClientRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T18:06:02.664Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAADIAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T17:26:07.223Z",
+              "Title": "Quiron.EntityFrameworkCore.Test",
+              "DocumentMoniker": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Quiron.EntityFrameworkCore.Test.csproj",
+              "RelativeDocumentMoniker": "Quiron.EntityFrameworkCore.Test.csproj",
+              "ToolTip": "C:\\Meus Projetos GUI\\SGS V_W\\Quiron.EntityFrameworkCore.Test\\Quiron.EntityFrameworkCore.Test.csproj",
+              "RelativeToolTip": "Quiron.EntityFrameworkCore.Test.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-01T18:09:38.801Z",
               "EditorCaption": ""
             }
           ]

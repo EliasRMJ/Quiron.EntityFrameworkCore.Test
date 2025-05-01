@@ -51,6 +51,42 @@ dotnet add package Quiron.EntityFrameworkCore
 
 ## Basic Usage
 
+### Program Your Project
+
+```csharp
+builder.Services.AddSingleton<Messages, MyMessagesEnUs>();
+builder.Services.AddSingleton<MessagesEnUs>();
+builder.Services.AddSingleton<MessagesPtBr>();
+builder.Services.AddSingleton<MessagesEsEs>();
+builder.Services.AddSingleton<MyMessagesEnUs>();
+builder.Services.AddSingleton<MyMessagesPtBr>();
+
+builder.Services.AddSingleton<IMessagesProvider, MessagesProvider>();
+builder.Services.AddSingleton<IMyMessagesProvider, MyMessagesProvider>();
+
+builder.Services.AddScoped(typeof(ITransactionWork), typeof(TransactionWork));
+builder.Services.AddScoped(typeof(IExpressionConvert), typeof(ExpressionConvert));
+
+builder.Services.AddScoped(typeof(IClassificationRepository), typeof(ClassificationRepository));
+builder.Services.AddScoped(typeof(IClassificationValidation), typeof(ClassificationValidation));
+builder.Services.AddScoped(typeof(IClassificationService), typeof(ClassificationService));
+builder.Services.AddScoped(typeof(IClassificationAppService), typeof(ClassificationAppService));
+
+builder.Services.AddScoped(typeof(IClientRepository), typeof(ClientRepository));
+builder.Services.AddScoped(typeof(IClientValidation), typeof(ClientValidation));
+builder.Services.AddScoped(typeof(IClientService), typeof(ClientService));
+builder.Services.AddScoped(typeof(IClientAppService), typeof(ClientAppService));
+
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+
+builder.Logging.ClearProviders();
+builder.Logging.AddProvider(new FileLoggerProvider("Logs"));
+
+builder.Services.AddMemoryCache();
+builder.Services.AddSingleton<IMemoryCache, MemoryCache>();
+builder.Services.AddSingleton<IServerEmail, ServerMailTest>();
+```
+
 ### Domain Entity
 
 ```csharp
