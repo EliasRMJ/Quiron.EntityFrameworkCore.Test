@@ -43,7 +43,6 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.Locations
         public override string TransactionNoStarting => "'CommitAsync' requiere una transacción activa. ¡Intente iniciar el método 'BeginTransactionAsync' primero!";
 
         public override string MailExcept => "Error al enviar el correo electrónico.";
-        public override string MailArgumentNullExceptiont => "Error de argumento nulo.";
         public override string MailObjectDisposedException => "Error al desechar el objeto.";
         public override string MailServiceNotConnectedException => "Error de servicio no conectado.";
         public override string MailServiceNotAuthenticatedException => "Error en la autenticación del servicio.";

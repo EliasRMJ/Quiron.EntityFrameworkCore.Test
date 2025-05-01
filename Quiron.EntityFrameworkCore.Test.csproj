@@ -18,7 +18,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Quiron.EntityFrameworkCore" Version="1.5.11" />
+    <PackageReference Include="Quiron.EntityFrameworkCore" Version="1.6.27" />
+    <PackageReference Include="Quiron.Mail" Version="1.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.3.2" />
   </ItemGroup>
 

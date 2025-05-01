@@ -1,4 +1,4 @@
-﻿using Quiron.EntityFrameworkCore.Extensions;
+﻿using Quiron.Extensions;
 
 namespace Quiron.EntityFrameworkCore.Enuns
 {

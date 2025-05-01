@@ -2,3 +2,6 @@
 
 # CS8603: Possível retorno de referência nula.
 dotnet_diagnostic.CS8603.severity = none
+
+# CS8613: A anulabilidade de tipos de referência em tipo de retorno não corresponde ao membro implicitamente implementado.
+dotnet_diagnostic.CS8613.severity = none

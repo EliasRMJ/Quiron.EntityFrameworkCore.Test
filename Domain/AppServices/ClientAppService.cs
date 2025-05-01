@@ -5,6 +5,7 @@ using Quiron.EntityFrameworkCore.Test.Domain.Entitys;
 using Quiron.EntityFrameworkCore.Test.Domain.Locations.Interfaces;
 using Quiron.EntityFrameworkCore.Test.Domain.Services;
 using Quiron.EntityFrameworkCore.Test.Domain.ViewModels;
+using Quiron.Expression;
 
 namespace Quiron.EntityFrameworkCore.Test.Domain.AppServices
 {
@@ -12,7 +13,8 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.AppServices
                                 , ITransactionWork transactionWork
                                 , IMapper mapper
                                 , ILogger<ClientViewModel> logger
-                                , IMyMessagesProvider provider)
-        : AppServiceBase<ClientViewModel, Client>(clientService, transactionWork, mapper, logger, provider)
+                                , IMyMessagesProvider provider
+                                , IExpressionConvert expressionConvert)
+        : AppServiceBase<ClientViewModel, Client>(clientService, transactionWork, mapper, logger, provider, expressionConvert)
         , IClientAppService { }
 }

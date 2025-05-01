@@ -7,6 +7,7 @@ using Quiron.EntityFrameworkCore.Test.Domain.Entitys;
 using Quiron.EntityFrameworkCore.Test.Domain.Locations.Interfaces;
 using Quiron.EntityFrameworkCore.Test.Domain.Services;
 using Quiron.EntityFrameworkCore.Test.Domain.ViewModels;
+using Quiron.Expression;
 
 namespace Quiron.EntityFrameworkCore.Test.Domain.AppServices
 {
@@ -14,8 +15,9 @@ namespace Quiron.EntityFrameworkCore.Test.Domain.AppServices
                                         , ITransactionWork transactionWork
                                         , IMapper mapper
                                         , ILogger<ClassificationViewModel> logger
-                                        , IMyMessagesProvider provider)
-        : AppServiceBase<ClassificationViewModel, Classification>(classificationService, transactionWork, mapper, logger, provider)
+                                        , IMyMessagesProvider provider
+                                        , IExpressionConvert expressionConvert)
+        : AppServiceBase<ClassificationViewModel, Classification>(classificationService, transactionWork, mapper, logger, provider, expressionConvert)
         , IClassificationAppService
     {
         public async Task<OperationReturn> ChangeStatusAsync(long id, ActiveEnum status)

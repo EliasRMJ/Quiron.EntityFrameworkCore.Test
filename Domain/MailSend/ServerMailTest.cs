@@ -1,24 +1,21 @@
-﻿using Microsoft.Extensions.Configuration;
-using MimeKit;
-using Quiron.EntityFrameworkCore.Interfaces;
-using Quiron.EntityFrameworkCore.Mail;
-using Quiron.EntityFrameworkCore.Structs;
+﻿using MimeKit;
+using Quiron.Mail;
 
 namespace Quiron.EntityFrameworkCore.Test.Domain.MailSend
 {
-    public class ServerMailTest(IConfiguration configuration, IMessagesProvider provider) 
-        : ServerEmail(configuration, provider)
+    public class ServerMailTest(IConfiguration configuration) 
+        : ServerEmail(configuration)
     {
-        public override Task SendMailAsync(string from, string fromName, InternetAddressList mailboxAddresses, string subject
-            , string message, MailAttachment[] mailAttachments, bool userSsl = false, MessagePriority messagePriority = MessagePriority.Normal)
+        public async override Task SendMailAsync(ParamEmail from, ParamEmail to, string subject, string message, MailAttachment[] mailAttachments
+            , MessagePriority messagePriority = MessagePriority.Normal)
         {
-            return base.SendMailAsync(from, fromName, mailboxAddresses, subject, message, mailAttachments, userSsl, messagePriority);
+            await base.SendMailAsync(from, [new MailboxAddress(to.Name, to.Email)], subject, message, mailAttachments, messagePriority);
         }
 
-        public override Task SendMailAsync(string from, string fromName, string to, string toName, string subject, string message
-            , MailAttachment[] mailAttachments, bool userSsl = false, MessagePriority messagePriority = MessagePriority.Normal)
+        public async override Task SendMailAsync(ParamEmail from, InternetAddressList mailboxAddresses, string subject, string message
+            , MailAttachment[] mailAttachments, MessagePriority messagePriority = MessagePriority.Normal)
         {
-            return base.SendMailAsync(from, fromName, to, toName, subject, message, mailAttachments, userSsl, messagePriority);
+            await base.SendMailAsync(from, mailboxAddresses, subject, message, mailAttachments, messagePriority);
         }
     }
 }

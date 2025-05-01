@@ -3,7 +3,7 @@ using Quiron.EntityFrameworkCore.Test.Domain.Entitys;
 using Quiron.EntityFrameworkCore.Repositorys;
 using Quiron.EntityFrameworkCore.Interfaces;
 using Quiron.EntityFrameworkCore.Enuns;
-using Quiron.EntityFrameworkCore.Extensions;
+using Quiron.Extensions;
 using Quiron.EntityFrameworkCore.Structs;
 using Quiron.EntityFrameworkCore.Test.Domain.Locations.Interfaces;
 

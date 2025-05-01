@@ -21,6 +21,8 @@ using Quiron.EntityFrameworkCore.Test.Domain.Locations.Interfaces;
 using Quiron.EntityFrameworkCore.Test.Domain.Entitys;
 using Quiron.EntityFrameworkCore.Test.Domain.Validations;
 using Quiron.EntityFrameworkCore.Test.Domain.Validations.Interfaces;
+using Quiron.Mail;
+using Quiron.Expression;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +48,7 @@ builder.Services.AddSingleton<IMessagesProvider, MessagesProvider>();
 builder.Services.AddSingleton<IMyMessagesProvider, MyMessagesProvider>();
 
 builder.Services.AddScoped(typeof(ITransactionWork), typeof(TransactionWork));
+builder.Services.AddScoped(typeof(IExpressionConvert), typeof(ExpressionConvert));
 
 builder.Services.AddScoped(typeof(IClassificationRepository), typeof(ClassificationRepository));
 builder.Services.AddScoped(typeof(IClassificationValidation), typeof(ClassificationValidation));
