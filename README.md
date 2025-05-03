@@ -23,6 +23,15 @@ Install via NuGet:
 dotnet add package Quiron.EntityFrameworkCore
 ```
 
+## Referenced Packages
+
+Packages that can be used to speed up the construction of your project!
+
+https://github.com/EliasRMJ/Quiron.UploadFile
+https://github.com/EliasRMJ/Quiron.Mail
+https://github.com/EliasRMJ/Quiron.Extensions
+https://github.com/EliasRMJ/Quiron.Expression
+
 ## Actions begining
 
 - ✅ Create a new DB in your SQL Server instance with the name 'Quiron.EntityFrameworkCore.Test' and change the connection string in the appsettings.json file to point to your DB.
