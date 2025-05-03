@@ -27,10 +27,10 @@ dotnet add package Quiron.EntityFrameworkCore
 
 Packages that can be used to speed up the construction of your project!
 
-https://github.com/EliasRMJ/Quiron.UploadFile
-https://github.com/EliasRMJ/Quiron.Mail
-https://github.com/EliasRMJ/Quiron.Extensions
-https://github.com/EliasRMJ/Quiron.Expression
+-https://github.com/EliasRMJ/Quiron.UploadFile
+-https://github.com/EliasRMJ/Quiron.Mail
+-https://github.com/EliasRMJ/Quiron.Extensions
+-https://github.com/EliasRMJ/Quiron.Expression
 
 ## Actions begining
 
